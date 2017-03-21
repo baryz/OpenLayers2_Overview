@@ -1,0 +1,95 @@
+﻿<html>
+<head>
+  <title>TEST OpenLayers 2 Example</title>
+	<script type="text/javascript" src="js/proj4js-combined.js"></script>
+    </head>
+    <body>
+    <div style="width:100%; height:60%" id="map"></div>
+            <div id="map" class="smallmap"></div>
+
+    <div id="outLastMeasure"></div>
+    <div id="outCurrentMeasure"></div>
+    <ul id="controlToggle">
+        <li>
+            <input type="radio" name="type" value="none" id="noneToggle"
+                  onclick="toggleControl(this);" checked="checked" />
+            <label for="noneToggle">navigate</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="point" id="pointToggle" onclick="toggleControl(this);" />
+            <label for="pointToggle">draw point</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="lineMeasure" id="lineMeasureToggle" onclick="toggleControl(this);" />
+            <label for="lineMeasureToggle">draw measure line</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="line" id="line" onclick="toggleControl(this);" />
+            <label for="lineToggle">draw line</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="polygon" id="polygonToggle" onclick="toggleControl(this);" />
+            <label for="polygonToggle">draw polygon</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="polygonMeasure" id="polygonMeasureToggle" onclick="toggleControl(this);" />
+            <label for="polygonMeasureToggle">draw measure polygon</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="box" id="boxToggle" onclick="toggleControl(this);" />
+            <label for="boxToggle">draw box</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="regular" id="regularToggle" onclick="toggleControl(this);" />
+            <label for="regularToggle">draw regular polygon</label>
+            <label for="sides"> - sides</label>
+            <input id="sides" type="text" size="2" maxlength="2"
+                    name="sides" value="5" onchange="update()" />
+            <ul>
+                <li>
+                    <input id="irregular" type="checkbox"
+                            name="irregular" onchange="update()" />
+                    <label for="irregular">irregular</label>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox" name="allow-pan" value="allow-pan" id="allowPanCheckbox" checked=true onclick="allowPan(this);" />
+            <label for="allowPanCheckbox">allow pan while drawing</label>
+        </li>
+        <li>
+            <input type="radio" name="type" value="modify" id="modifyToggle"
+                    onclick="toggleControl(this);" />
+            <label for="modifyToggle">modify feature</label>
+            <ul>
+                <li>
+                    <input id="createVertices" type="checkbox" checked
+                            name="createVertices" onchange="update()" />
+                    <label for="createVertices">allow vertices creation</label>
+                </li>
+                <li>
+                    <input id="rotate" type="checkbox"
+                            name="rotate" onchange="update()" />
+                    <label for="rotate">allow rotation</label>
+                </li>
+                <li>
+                    <input id="resize" type="checkbox"
+                            name="resize" onchange="update()" />
+                    <label for="resize">allow resizing</label>
+                    (<input id="keepAspectRatio" type="checkbox"
+                            name="keepAspectRatio" onchange="update()" checked="checked" />
+                    <label for="keepAspectRatio">keep aspect ratio</label>)
+                </li>
+                <li>
+                    <input id="drag" type="checkbox"
+                            name="drag" onchange="update()" />
+                    <label for="drag">allow dragging</label>
+                </li>
+            </ul>
+        </li>
+    </ul>
+	  <script src="http://openlayers.org/api/OpenLayers.js"></script>
+      <script type="text/javascript" src="js/const.js"></script>
+	  <script type="text/javascript" src="js/map.js"></script>
+    </body>
+</html>
