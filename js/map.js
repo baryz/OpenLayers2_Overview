@@ -10,6 +10,8 @@ var Map = function(mapID) {
     //Polygon points
     this.nodesOfPolygon = [];
 
+    this.previousFeature;
+
     this.zoom = 17;
 
     this.layerCMP500 = new OpenLayers.Layer.WMS('CMP_500', EXTERNAL_SERVICES.IGIK, {
@@ -56,7 +58,7 @@ var Map = function(mapID) {
             var geom = event.feature.geometry;
             var type = geom.componentTypes;
 
-            if(OL_TYPE_POINT == type){
+            if(OL_TYPE_POINT == type) {
                 var length = geom.getGeodesicLength('EPSG:3857');
                 self.showMeasure(length, UNIT_LEN);
             }else if(OL_TYPE_LINEAR_RING == type){
@@ -68,7 +70,7 @@ var Map = function(mapID) {
             
         },
         afterfeaturemodified: function(event) {
-            var geom = event.feature.geometry;
+            var geom = event.feature.geometry.clone();
             var type = geom.componentTypes;
             
             if(OL_TYPE_POINT == type){
@@ -92,7 +94,19 @@ var Map = function(mapID) {
                 }
             }
 
-            
+            self.previousFeature = event.feature.clone();
+        },
+        featureunselected: function(feature){
+            console.log("featureunselected !");
+            var geom = feature.feature.geometry;
+            var type = geom.componentTypes;
+            console.log('TYPE: ' + type);
+        },
+        featureuelected: function(feature){
+            console.log("featureuelected !");
+            var geom = feature.feature.geometry;
+            var type = geom.componentTypes;
+            console.log('TYPE: ' + type);
         }
     };
 
@@ -119,7 +133,7 @@ var Map = function(mapID) {
                         create: function () {
                             self.drawLines = [];
                             self.previousPoint = null;
-                            self.showMeasure(0.0, "m");
+                            self.showMeasure(0.0, UNIT_LEN);
                         },
                         modify: function(aPoint){
                                 if(self.previousPoint != null){
@@ -157,11 +171,12 @@ var Map = function(mapID) {
                             },
                             modify: function(aPoint){
                                 if(self.nodesOfPolygon.length > 1){
-                                    var tempNodes = self.nodesOfPolygon;
+                                    var tempNodes = Array.from(self.nodesOfPolygon);
                                     tempNodes.push(aPoint.clone());
                                     var linearRing = new OpenLayers.Geometry.LinearRing(tempNodes);
                                     var polygon = new OpenLayers.Geometry.Polygon(linearRing);
                                     var area = polygon.getGeodesicArea('EPSG:3857');
+
                                     self.showMeasure(area, "m <sup>2</sup>");
                                 }
                             },
@@ -214,7 +229,7 @@ var Map = function(mapID) {
     };
 
     this.drawControls['line'].events.register('featureadded', this.drawControls['line'], function(event){
-        var geom = event.feature.geometry;
+        var geom = event.feature.geometry.clone();
         self.lastMeasure = geom.getGeodesicLength('EPSG:3857');
         self.showLastMeasure(self.lastMeasure, "m");
 
@@ -230,14 +245,15 @@ var Map = function(mapID) {
     this.drawControls['polygon'].events.register('featureadded', this.drawControls['polygon'], function(event){
         var geom = event.feature.geometry;
         self.lastMeasure = geom.getGeodesicArea('EPSG:3857');
+        console.log('Polygon featureadded ' + self.lastMeasure);
         self.showLastMeasure(self.lastMeasure, UNIT_AREA);
 
         if(self.lastMeasure > MAX_POLYGON_AREA){
-           alert('Maximum allow area of polygon is '+ MAX_POLYGON_AREA + ', please edit path');
+            //alert('Maximum allow area of polygon is '+ MAX_POLYGON_AREA + ', please edit path');
             self.switchFeature();
             self.drawControls.modify.selectFeature(event.feature);
         }else {
-            alert('Length is OK !');
+            //alert('Area is OK !');
         }
     });
 
@@ -281,7 +297,7 @@ var Map = function(mapID) {
         self.map.addLayers([self.vectors]);
 
         self.map.setCenter(
-           new OpenLayers.LonLat(lonOlymp, latOlymp).transform(
+           new OpenLayers.LonLat(lonTG, latTG).transform(
             'EPSG:4326',
             self.map.getProjectionObject()
         ) , self.zoom
