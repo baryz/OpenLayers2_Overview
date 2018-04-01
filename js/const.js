@@ -9,7 +9,7 @@ var sketchSymbolizers = {
                     fillOpacity: 1,
                     strokeWidth: 1,
                     strokeOpacity: 1,
-                    strokeColor: "#333333"
+                    strokeColor: "yellow"
                 },
                 "Line": {
                     strokeWidth: 3,
