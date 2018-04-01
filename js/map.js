@@ -76,11 +76,11 @@ var Map = function(mapID) {
             if(OL_TYPE_POINT == type){
                 var length = geom.getGeodesicLength('EPSG:3857');
                 if(length > MAX_PATH_LEN){
-                    alert('Maximum allow length of path is '+ MAX_PATH_LEN + ', please edit path');
+                    alert('Maximum allow length of path is '+ MAX_PATH_LEN + ', please edit current path');
                     self.switchFeature();
                     self.drawControls.modify.selectFeature(event.feature);
                 }else{
-                    alert("Ok");
+                    alert("Ok kkk");
                 }
 
             }else if(OL_TYPE_LINEAR_RING == type){
