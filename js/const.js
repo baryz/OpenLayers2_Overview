@@ -20,7 +20,7 @@ var sketchSymbolizers = {
                 "Polygon": {
                     strokeWidth: 2,
                     strokeOpacity: 1,
-                    strokeColor: "#666666",
+                    strokeColor: "red",
                     fillColor: "white",
                     fillOpacity: 0.3
                 }
