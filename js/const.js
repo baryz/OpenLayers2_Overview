@@ -30,7 +30,7 @@ var MAX_PATH_LEN = 1000;  //m
 var MAX_POLYGON_AREA = 20000; //m^2
 
 var UNIT_LEN = "m";
-var UNIT_AREA = "m <sup>2</sup>";
+var UNIT_AREA = "km <sup>2</sup>";
 
 var OL_TYPE_POINT = "OpenLayers.Geometry.Point";
 var OL_TYPE_LINEAR_RING = "OpenLayers.Geometry.LinearRing";
