@@ -14,13 +14,13 @@ var sketchSymbolizers = {
                 "Line": {
                     strokeWidth: 3,
                     strokeOpacity: 1,
-                    strokeColor: "#666666",
+                    strokeColor: "black",
                     strokeDashstyle: "dash"
                 },
                 "Polygon": {
                     strokeWidth: 2,
                     strokeOpacity: 1,
-                    strokeColor: "#666666",
+                    strokeColor: "red",
                     fillColor: "white",
                     fillOpacity: 0.3
                 }
