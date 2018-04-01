@@ -12,7 +12,7 @@ var Map = function(mapID) {
 
     this.previousFeature;
 
-    this.zoom = 17;
+    this.zoom = 19;
 
     this.layerCMP500 = new OpenLayers.Layer.WMS('CMP_500', EXTERNAL_SERVICES.IGIK, {
         layers: 'cmp500',
