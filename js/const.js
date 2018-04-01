@@ -27,7 +27,7 @@ var sketchSymbolizers = {
 };
 
 var MAX_PATH_LEN = 1000;  //m
-var MAX_POLYGON_AREA = 10000; //m^2
+var MAX_POLYGON_AREA = 20000; //m^2
 
 var UNIT_LEN = "m";
 var UNIT_AREA = "m <sup>2</sup>";
