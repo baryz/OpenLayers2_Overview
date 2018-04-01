@@ -29,7 +29,7 @@ var sketchSymbolizers = {
 var MAX_PATH_LEN = 100;  //m
 var MAX_POLYGON_AREA = 20000; //m^2
 
-var UNIT_LEN = "m";
+var UNIT_LEN = "km";
 var UNIT_AREA = "km <sup>2</sup>";
 
 var OL_TYPE_POINT = "OpenLayers.Geometry.Point";
